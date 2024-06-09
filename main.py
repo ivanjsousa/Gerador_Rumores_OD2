@@ -1,9 +1,11 @@
 import random
+import flet as ft
 
+# Dados
 QUANDO = ['na semana passada', 'no último inverno', 'três dias atrás', 'pela manhã', 'depois da meia noite',
           'hoje mais cedo', 'durante o almoço', 'algumas horas atrás', 'durante a tarde', 'no jantar']
 
-QUEM = ['um pirata', 'um aventureiro', 'um homem', 'um nobre', 'um cultista', 'um soldade', 'um sacerdote',
+QUEM = ['um pirata', 'um aventureiro', 'um homem', 'um nobre', 'um cultista', 'um soldado', 'um sacerdote',
         'uma mulher', 'um criminoso', 'um mago']
 
 ATIVIDADE = ['foi visto com', 'escondida', 'portava', 'recebeu', 'tinha em mãos', 'tentava vender', 'comprou',
@@ -29,8 +31,38 @@ PISTA2 = ['um nobre local', 'uma guilda de ladrões', 'um druida que age no loca
 PISTA3 = ['está recrutando um grupo de heróis para investigar', 'paga pela confirmação do rumor',
           'desmente com força este rumor', 'enviou espiões para descobrir tudo sobre isso',
           'tem interesse na história', 'contratou bandidos para se proteger', 'enviou aventureiros para lá',
-          'afirma que é mentira', 'investiva com atenção', 'tenta abafar o caso']
+          'afirma que é mentira', 'investiga com atenção', 'tenta abafar o caso']
 
-print(f"Vocês ouviram {random.choice(QUANDO)}, que {random.choice(QUEM)} {random.choice(ATIVIDADE)} "
-      f"{random.choice(COISA)} {random.choice(QUALIDADE)} {random.choice(ONDE)} e junto havia {random.choice(PISTA1)}. "
-      f"Parece que {random.choice(PISTA2)}, {random.choice(PISTA3)}.")
+
+def gerar_rumor():
+    rumor = (f"Vocês ouviram {random.choice(QUANDO)}, que {random.choice(QUEM)} {random.choice(ATIVIDADE)} "
+             f"{random.choice(COISA)} {random.choice(QUALIDADE)} {random.choice(ONDE)} e junto havia {random.choice(PISTA1)}. "
+             f"Parece que {random.choice(PISTA2)}, {random.choice(PISTA3)}.")
+    return rumor
+
+
+def main(page: ft.Page):
+    page.title = "Gerador de Rumores"
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+
+    rumor_text = ft.Text(gerar_rumor(), size=20, text_align=ft.TextAlign.CENTER)
+
+    def on_generate_click():
+        rumor_text.value = gerar_rumor()
+        page.update()
+
+    generate_button = ft.ElevatedButton(text="Gerar Novo Rumor", on_click=on_generate_click)
+
+    page.add(
+        ft.Column(
+            [
+                rumor_text,
+                generate_button,
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+        )
+    )
+
+
+ft.app(target=main)
