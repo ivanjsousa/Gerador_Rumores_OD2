@@ -35,19 +35,22 @@ PISTA3 = ['está recrutando um grupo de heróis para investigar', 'paga pela con
 
 
 def gerar_rumor():
-    rumor = (f"Vocês ouviram {random.choice(QUANDO)}, que {random.choice(QUEM)} {random.choice(ATIVIDADE)} "
+    rumor = (f" ''Vocês ouviram {random.choice(QUANDO)}, que {random.choice(QUEM)} {random.choice(ATIVIDADE)} "
              f"{random.choice(COISA)} {random.choice(QUALIDADE)} {random.choice(ONDE)} e junto havia {random.choice(PISTA1)}. "
-             f"Parece que {random.choice(PISTA2)}, {random.choice(PISTA3)}.")
+             f"Parece que {random.choice(PISTA2)}, {random.choice(PISTA3)}.'' ")
     return rumor
 
 
 def main(page: ft.Page):
     page.title = "Gerador de Rumores"
+    page.window_width = 400
+    page.window_height = 300
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    rumor_text = ft.Text(gerar_rumor(), size=20, text_align=ft.TextAlign.CENTER)
+    rumor_text = ft.Text(gerar_rumor(), size=20, text_align=ft.TextAlign.JUSTIFY)
 
-    def on_generate_click():
+    def on_generate_click(event):
         rumor_text.value = gerar_rumor()
         page.update()
 
