@@ -27,16 +27,18 @@ def main(page: ft.Page):
     rumor_text = ft.Text(size=20, text_align=ft.TextAlign.JUSTIFY, color="white")
 
     def on_generate_click(event):
-        rumor_text.value = gerar_rumor_tipo_1() if dropdown.value == "Rumor OD2" else gerar_rumor_tipo_2()
+        rumor_text.value = gerar_rumor_tipo_1() if dropdown.value == "Old Dragon 2" else gerar_rumor_tipo_2()
         page.update()
 
     def on_copy_click(event):
         page.set_clipboard(rumor_text.value)
 
     dropdown = ft.Dropdown(
-        options=[ft.dropdown.Option("Rumor OD2"), ft.dropdown.Option("Rumor Solo Dragon")],
-        value="Rumor OD2",
-        width=170
+        options=[ft.dropdown.Option("Old Dragon 2"), ft.dropdown.Option("Solo Dragon")],
+        color="black",
+        bgcolor="white",
+        value="Old Dragon 2",
+        width=150,
     )
 
     generate_button = ft.ElevatedButton(text="Gerar Novo Rumor", on_click=on_generate_click)
@@ -63,7 +65,7 @@ def main(page: ft.Page):
 
     # Adicionando a imagem de fundo
     background_image = ft.Image(
-        src="https://olddragon.com.br/vite/assets/home-panel-1-DUG7iSqR.webp",  # Substitua pelo URL da sua imagem
+        src="https://olddragon.com.br/vite/assets/home-panel-3-ByE2tsET.webp",  # Substitua pelo URL da sua imagem
         fit=ft.ImageFit.COVER,
         width=page.window_width,
         height=page.window_height
@@ -77,7 +79,7 @@ def main(page: ft.Page):
                     content,
                     padding=20,
                     alignment=ft.alignment.center,
-                    bgcolor=ft.colors.with_opacity(ft.colors.BLACK, 0.7),  # Transparência para ver a imagem de fundo
+                    bgcolor=ft.colors.with_opacity(ft.colors.BLACK, "black"),  # Transparência para ver a imagem de fundo
                 ),
             ],
             expand=True,
