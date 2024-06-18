@@ -27,16 +27,16 @@ def main(page: ft.Page):
     rumor_text = ft.Text(size=20, text_align=ft.TextAlign.JUSTIFY)
 
     def on_generate_click(event):
-        rumor_text.value = gerar_rumor_tipo_1() if dropdown.value == "Rumor OD2" else gerar_rumor_tipo_2()
+        rumor_text.value = gerar_rumor_tipo_1() if dropdown.value == "Old Dragon 2" else gerar_rumor_tipo_2()
         page.update()
 
     def on_copy_click(event):
         page.set_clipboard(rumor_text.value)
 
     dropdown = ft.Dropdown(
-        options=[ft.dropdown.Option("Rumor OD2"), ft.dropdown.Option("Rumor Solo Dragon")],
-        value="Rumor OD2",
-        width=170
+        options=[ft.dropdown.Option("Old Dragon 2"), ft.dropdown.Option("Solo Dragon")],
+        value="Old Dragon 2",
+        width=150
     )
 
     generate_button = ft.ElevatedButton(text="Gerar Novo Rumor", on_click=on_generate_click)
@@ -64,4 +64,4 @@ def main(page: ft.Page):
     )
 
 
-ft.app(target=main)
+ft.app(target=main, view=ft.WEB_BROWSER)
